@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ARRG Record Control</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+	<style type="text/css">
+		#isi-form{
+			display: inline-flex;
+		}
+    </style>
+</head>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<body onload="checkCookie()">
+	<div class="container">
+  	<!-- Content here -->
+  		<div class="card" style="margin-top: 50px;">
+			<div class="card-header">
+				Project
+			</div>
+
+			<div class="card-body">
+				<b>Project name : </b><div id="PN" style="display: inline;">Please wait for checking...</div>
+				<br>
+				<br>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" id="tombolPN" aria-controls="collapseExample" disabled>Change Project Name</button>
+				<div class="collapse" id="collapseExample">
+  					<div class="card card-body">
+    					<form action="">
+							<div class="form-group">
+								<div class="isi-form">
+						  				<input id="isitext" class="form-control" type="text" placeholder="New Project Name">
+						  				<button onclick="this.disabled=true; tombolSBMT()" id="projek" style="margin-top:10px;" type="button" class="btn btn-primary" disabled>Submit</button>
+								</div>
+							</div>
+						</form>
+  					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card" style="margin-top: 50px;">
+			<div class="card-header">
+				Project
+			</div>
+
+			<div id="here" class="card-body">
+				<i class="fas fa-hourglass-half"></i><b>Status :</b> <div id="CT" style="display: inline;"> Not running</div>
+                <div class="alert alert-danger">
+                    <form>
+                        <div class="form-group">
+                                <button id="L_S" onclick="this.disabled=true; tombolL_S()" type="button" class="btn btn-success" disabled></button>
+                                <button id="L_STP" onclick="this.disabled=true; tombolL_STP()" type="button" class="btn btn-danger" disabled></button>
+				<p id='P_L' style="color:red;"></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="alert alert-danger">
+                    <form>
+                        <div class="form-group">
+                            <div class="isi-form">
+                                <div style="font-size: 30px; display: inline;"><b>Mission</b></div>
+                                <button id="I_S" onclick="this.disabled=true; tombolI_S()" type="button" class="btn btn-success" disabled>Start</button>
+                                <button id="I_STP" onclick="this.disabled=true; tombolI_STP()" type="button" class="btn btn-danger">Stop</button>
+                                <p id='P_I' style="color:red; margin-top: 20px">No Sensor</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="alert alert-danger">
+                    <form>
+                        <div class="form-group">
+                            <div class="isi-form">
+                                <div style="font-size: 30px; display: inline;"><b>Record</b></div>
+                                <button id="M_S" onclick="this.disabled=true; tombolM_S()" type="button" class="btn btn-success">Start</button>
+                                <button id="M_STP" onclick="this.disabled=true; tombolM_STP()" type="button" class="btn btn-danger">Stop</button>
+                                <p id='P_M' style="color:red; margin-top: 20px">No USB</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+			</div>
+        </div>
+		<!--End of Content-->
+    </div>
+</body>
+	<script src="js/font.js"></script>
+	<script type="text/javascript" src="js/socketio.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</html>
+

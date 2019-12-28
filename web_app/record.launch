@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+    <rosparam>
+        /use_sim_time: false
+    </rosparam>
+    <arg name="dir" default="/media/odroid/log_usb/test"/>
+    <arg name="topic" default="/mavros/imu/data /mavros/imu/data_raw /mavros/global_position/global /mavros/global_position/raw/fix /image /image_raw /mission"/>
+    <node
+        pkg="rosbag" type="record" name="rosbag" output="screen"
+        args="-O $(arg dir) -e $(arg topic)"
+    />
+</launch>

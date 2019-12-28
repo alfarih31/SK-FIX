@@ -1,0 +1,12 @@
+syntax="proto3";
+message toClient{
+    bool on_mission = 1;
+}
+
+message fromClient{
+    bytes image = 1;
+}
+
+service WS{
+    rpc clientStream(toClient) returns (fromClient){};
+}

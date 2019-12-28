@@ -1,0 +1,51 @@
+from time import sleep
+import logging
+import dronekit
+
+print("HERE")
+vehicle = dronekit.connect("/dev/ttyUSB0", baud=57600)
+print("CONNECTED")
+
+#vehicle.mode = dronekit.VehicleMode("STABILIZE")
+while not vehicle.is_armable:
+    print("WAITING INITIALIZING")
+    sleep(1)
+
+print(vehicle.system_status.state)
+vehicle.mode = dronekit.VehicleMode("GUIDED")
+#while vehicle.mode != dronekit.VehicleMode("GUIDED"):
+#    sleep(0.5)
+vehicle.armed = True
+while not vehicle.armed:
+    print("WAITING FOR ARMED")
+    vehicle.armed = True
+    sleep(1)
+
+#vehicle.mode = dronekit.VehicleMode("GUIDED")
+#print(vehicle.mode)
+#location = vehicle.location.global_relative_frame
+#lat = location.lat
+#lon = location.lon
+#print(lat, lon)
+#vehicle.home_location = dronekit.LocationGlobal(lat, lon, 0)
+#vehicle.airspeed = 5
+#vehicle.simple_takeoff(alt=1)
+sleep(1.5)
+vehicle.wait_simple_takeoff(alt=1)
+#while True:
+#    print('Altitude: %d'%vehicle.location.global_relative_frame.alt)
+#    if vehicle.location.global_relative_frame.alt >= 1 * 0.95:
+#        logging.info('REACHED TARGET ALTITUDE')
+#        break
+#    sleep(0.5)
+print("REACHED: ", vehicle.location.global_relative_frame.alt)
+vehicle.mode = dronekit.VehicleMode("LAND")
+last = 0
+while True:
+    try:
+        alt = vehicle.location.global_relative_frame.alt
+        if alt >= last:
+            last = alt
+            print("Alt", last)
+    except:
+        break
